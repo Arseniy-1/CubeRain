@@ -4,7 +4,7 @@ public abstract class CollectableObject : MonoBehaviour
 {
     [SerializeField] protected Returner Returner;
 
-    public void Initialize(ObjectPool pool)
+    public void Initialize(IPool pool)
     {
         Returner.Initialize(pool);
     }

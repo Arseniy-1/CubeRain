@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : MonoBehaviour, IPool
 {
     [SerializeField] private int _poolCapacity;
     [SerializeField] private CollectableObject _objectPrefab;
@@ -23,13 +23,6 @@ public class ObjectPool : MonoBehaviour
             obj.Initialize(this);
         }
     }
-    public void Reset()
-    {
-        foreach (CollectableObject obj in _objects)
-        {
-            obj.gameObject.SetActive(false);
-        }
-    }
 
     public CollectableObject Get()
     {
@@ -39,6 +32,7 @@ public class ObjectPool : MonoBehaviour
         CollectableObject newObj = _objects.Dequeue();
         newObj.transform.rotation = Quaternion.identity;
         newObj.gameObject.SetActive(true);
+
         ActiveCount++;
 
         return newObj;

@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Returner : MonoBehaviour, IReturnable
+public class Returner : MonoBehaviour
 {
-    private ObjectPool _objectPool;
+    private IPool _objectPool;
 
-    public void Initialize(ObjectPool objectPool)
+    public void Initialize(IPool objectPool)
     {
         _objectPool = objectPool;
     }
