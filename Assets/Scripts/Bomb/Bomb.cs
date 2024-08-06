@@ -41,6 +41,6 @@ public class Bomb : CollectableObject
         yield return new WaitForSeconds(DetonateDelay);
 
         Detonate();
-        Returner.Return(this);
+        Return();
     }
 }

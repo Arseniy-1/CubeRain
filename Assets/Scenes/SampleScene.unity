@@ -132,33 +132,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132633029}
-  - component: {fileID: 132633028}
   m_Layer: 0
-  m_Name: SpawnerController
+  m_Name: Spawners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &132633028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132633027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d6675288aefb6645afe48aab1198176, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cubeSpawner: {fileID: 2130484917}
-  _bombSpawner: {fileID: 1321599994}
-  _cubesSpawnPositions:
-  - {x: 6, y: 6, z: 0}
-  - {x: 0, y: 6, z: 0}
-  - {x: -6, y: 6, z: 0}
-  _cubeSpawnDelay: 1
 --- !u!4 &132633029
 Transform:
   m_ObjectHideFlags: 0
@@ -293,7 +273,7 @@ GameObject:
   - component: {fileID: 227248640}
   - component: {fileID: 227248639}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Bombs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,7 +1333,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321599993}
-  - component: {fileID: 1321599992}
   - component: {fileID: 1321599994}
   m_Layer: 0
   m_Name: BombSpawner
@@ -1362,20 +1341,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1321599992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321599991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d99889158be9a34da73442251f8cc8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poolCapacity: 3
-  _objectPrefab: {fileID: 8116313390540617860, guid: 3ce5e5a4531091044a76f1f48edcff60, type: 3}
 --- !u!4 &1321599993
 Transform:
   m_ObjectHideFlags: 0
@@ -1400,10 +1365,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1321599991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8bb683e4685ea46bb495d3ada034c1, type: 3}
+  m_Script: {fileID: 11500000, guid: afa4b3ee4ceeef544be54f5e6bf0173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool: {fileID: 1321599992}
+  _pool:
+    _poolCapacity: 3
+    _objectPrefab: {fileID: 8116313390540617860, guid: 3ce5e5a4531091044a76f1f48edcff60, type: 3}
   _activeObjectCountView: {fileID: 2114608679}
   _objectCountView: {fileID: 227248639}
 --- !u!1 &1404429319
@@ -1536,7 +1503,7 @@ GameObject:
   - component: {fileID: 1565716013}
   - component: {fileID: 1565716012}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ActiveCubes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1805,7 +1772,7 @@ GameObject:
   - component: {fileID: 1789048439}
   - component: {fileID: 1789048438}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Cubes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1939,7 +1906,7 @@ GameObject:
   - component: {fileID: 2114608680}
   - component: {fileID: 2114608679}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ActiveBombs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2071,7 +2038,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2130484915}
   - component: {fileID: 2130484916}
-  - component: {fileID: 2130484917}
   m_Layer: 0
   m_Name: CubeSpawner
   m_TagString: Untagged
@@ -2103,26 +2069,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2130484912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d99889158be9a34da73442251f8cc8b, type: 3}
+  m_Script: {fileID: 11500000, guid: a79c3e519906bc747821eb1baa569987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolCapacity: 3
-  _objectPrefab: {fileID: 6479937147655419351, guid: b6c342db558deec409e200ec567f4f1f, type: 3}
---- !u!114 &2130484917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130484912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8bb683e4685ea46bb495d3ada034c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pool: {fileID: 2130484916}
+  _pool:
+    _poolCapacity: 3
+    _objectPrefab: {fileID: 6479937147655419351, guid: b6c342db558deec409e200ec567f4f1f, type: 3}
   _activeObjectCountView: {fileID: 1565716012}
   _objectCountView: {fileID: 1789048438}
+  _spawnPositions:
+  - {x: 6, y: 6, z: 0}
+  - {x: 0, y: 6, z: 0}
+  - {x: -6, y: 6, z: 0}
+  _spawnDelay: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,54 +1,53 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-public class ObjectPool : MonoBehaviour, IPool
+[Serializable]
+public class ObjectPool<T> where T : CollectableObject
 {
     [SerializeField] private int _poolCapacity;
-    [SerializeField] private CollectableObject _objectPrefab;
+    [SerializeField] private T _objectPrefab;
 
-    private Queue<CollectableObject> _objects = new Queue<CollectableObject>();
+    private Queue<T> _objects = new Queue<T>();
+
+    public event Action ObjectCountChanged;
 
     public int ActiveCount { get; private set; } = 0;
 
     private void Awake()
     {
         for (int i = 0; i < _poolCapacity; i++)
-        {
-            _objects.Enqueue(Instantiate(_objectPrefab));
-        }
-
-        foreach (CollectableObject obj in _objects)
-        {
-            obj.gameObject.SetActive(false);
-            obj.Initialize(this);
-        }
+            ExpandPool();
     }
 
-    public CollectableObject Get()
+    public T Get()
     {
         if (_objects.Count == 0)
             ExpandPool();
 
-        CollectableObject newObj = _objects.Dequeue();
+        T newObj = _objects.Dequeue();
         newObj.transform.rotation = Quaternion.identity;
         newObj.gameObject.SetActive(true);
 
         ActiveCount++;
+        ObjectCountChanged?.Invoke();
 
         return newObj;
     }
 
-    public void Return(CollectableObject obj)
+    public void Release(T obj)
     {
         obj.gameObject.SetActive(false);
         _objects.Enqueue(obj);
         ActiveCount--;
+        ObjectCountChanged?.Invoke();
     }
 
     private void ExpandPool()
     {
-        CollectableObject obj = Instantiate(_objectPrefab);
-        obj.Initialize(this);
+        T obj = Object.Instantiate(_objectPrefab);
+        obj.gameObject.SetActive(false);
         _objects.Enqueue(obj);
     }
 }

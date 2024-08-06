@@ -11,6 +11,6 @@ public class Returner : MonoBehaviour
 
     public void Return(CollectableObject collectable)
     {
-        _objectPool.Return(collectable);
+        _objectPool.Release(collectable);
     }
 }

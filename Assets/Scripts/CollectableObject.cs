@@ -1,13 +1,14 @@
+using System;
 using UnityEngine;
 
 public abstract class CollectableObject : MonoBehaviour
 {
-    [SerializeField] protected Returner Returner;
-
-    public void Initialize(IPool pool)
-    {
-        Returner.Initialize(pool);
-    }
+    public event Action<CollectableObject> OnDestroyed;
 
     public abstract void Activate();
+
+    public void Return()
+    {
+        OnDestroyed?.Invoke(this);
+    }
 }

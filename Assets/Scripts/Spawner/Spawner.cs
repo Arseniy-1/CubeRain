@@ -1,29 +1,41 @@
 using TMPro;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public abstract class Spawner<T> : MonoBehaviour where T : CollectableObject
 {
-    [SerializeField] private ObjectPool _pool;
+    [SerializeField] private ObjectPool<T> _pool;
     [SerializeField] private TextMeshProUGUI _activeObjectCountView;
     [SerializeField] private TextMeshProUGUI _objectCountView;
 
-    private int _count;
+    private int _objectCount;
 
-    private void Update()
+    protected virtual void OnEnable()
     {
-        ShowInfo();
+        _pool.ObjectCountChanged += ShowInfo;   
+    }
+
+    protected virtual void OnDisable()
+    {
+        _pool.ObjectCountChanged -= ShowInfo;
     }
 
     public void ShowInfo()
     {
         _activeObjectCountView.text = _pool.ActiveCount.ToString();
-        _objectCountView.text = _count.ToString();
+        _objectCountView.text = _objectCount.ToString();
+    }
+
+    public void PlaceInPool(CollectableObject collectableObject)
+    {
+        collectableObject.OnDestroyed -= PlaceInPool;
+        _pool.Release((T)collectableObject);
     }
 
     public void Spawn(Vector3 position)
     {
-        _count++;
-        CollectableObject obj = _pool.Get();
+        _objectCount++;
+        T obj = _pool.Get();
+        obj.OnDestroyed += PlaceInPool;
         obj.transform.position = position;
         obj.Activate();
     }

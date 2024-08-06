@@ -1,6 +1,6 @@
 public interface IPool
 {
-    void Return(CollectableObject collectable);
+    void Release(CollectableObject collectable);
     
     CollectableObject Get();
 }

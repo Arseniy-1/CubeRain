@@ -1,7 +1,7 @@
-using System;
 using UnityEngine;
 using System.Collections;
 using Random = UnityEngine.Random;
+using System;
 
 public class Cube : CollectableObject
 {
@@ -13,7 +13,7 @@ public class Cube : CollectableObject
     private int _maxDelay = 5;
     private int _minDelay = 2;
 
-    public static Action<Vector3> OnDestroy;
+    public static Action<Vector3> OnDisabled;
 
     public override void Activate()
     {
@@ -39,8 +39,8 @@ public class Cube : CollectableObject
     private IEnumerator ReturnWithDelay()
     {
         yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
-
-        Returner.Return(this);
-        OnDestroy.Invoke(transform.position);
+        
+        Return();
+        OnDisabled.Invoke(transform.position);
     }
 }
