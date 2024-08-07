@@ -13,7 +13,8 @@ public class ObjectPool<T> where T : CollectableObject
 
     public event Action ObjectCountChanged;
 
-    public int ActiveCount { get; private set; } = 0;
+    public int ObjectCount { get; private set; } = 0;
+    public int ActiveObjectCount { get; private set; } = 0;
 
     private void Awake()
     {
@@ -30,7 +31,8 @@ public class ObjectPool<T> where T : CollectableObject
         newObj.transform.rotation = Quaternion.identity;
         newObj.gameObject.SetActive(true);
 
-        ActiveCount++;
+        ActiveObjectCount++;
+
         ObjectCountChanged?.Invoke();
 
         return newObj;
@@ -40,7 +42,7 @@ public class ObjectPool<T> where T : CollectableObject
     {
         obj.gameObject.SetActive(false);
         _objects.Enqueue(obj);
-        ActiveCount--;
+        ActiveObjectCount--;
         ObjectCountChanged?.Invoke();
     }
 
@@ -49,5 +51,7 @@ public class ObjectPool<T> where T : CollectableObject
         T obj = Object.Instantiate(_objectPrefab);
         obj.gameObject.SetActive(false);
         _objects.Enqueue(obj);
+        
+        ObjectCount++;
     }
 }

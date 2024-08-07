@@ -13,14 +13,7 @@ public class Cube : CollectableObject
     private int _maxDelay = 5;
     private int _minDelay = 2;
 
-    public static Action<Vector3> OnDisabled;
-
-    public override void Activate()
-    {
-        _rigidbody.velocity = Vector3.zero;
-        _isTouched = false;
-        _painter.ChangeToDefaultColor();
-    }
+    public event Action<Cube> OnDisabled;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,15 +25,22 @@ public class Cube : CollectableObject
             _painter.ChangeColor();
             _isTouched = true;
 
-            StartCoroutine(ReturnWithDelay());
+            StartCoroutine(DisableWithDelay());
         }
     }
 
-    private IEnumerator ReturnWithDelay()
+    public override void Activate()
+    {
+        _rigidbody.velocity = Vector3.zero;
+        _isTouched = false;
+        _painter.ChangeToDefaultColor();
+    }
+
+    private IEnumerator DisableWithDelay()
     {
         yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
         
         Return();
-        OnDisabled.Invoke(transform.position);
+        OnDisabled.Invoke(this);
     }
 }

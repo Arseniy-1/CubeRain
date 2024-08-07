@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4629308257372843709}
   - component: {fileID: 5555710377424220804}
   - component: {fileID: 5118557369667442937}
-  - component: {fileID: 8498340325316425655}
   - component: {fileID: 8066914601509275265}
   - component: {fileID: 6479937147655419351}
   m_Layer: 0
@@ -128,18 +127,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d7a69634c0f402f43885963f53c784b0, type: 2}
   _defaultMaterial: {fileID: 2100000, guid: 42f5a3cb52114f84a989096578aee7c2, type: 2}
   _meshRenderer: {fileID: 4629308257372843709}
---- !u!114 &8498340325316425655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059189405506853544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e33c4134a10d9e4e93fadcb01ecc9a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &8066914601509275265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -179,6 +166,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc5298d4c7b1364791f9c026e7b6a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Returner: {fileID: 8498340325316425655}
   _painter: {fileID: 5118557369667442937}
   _rigidbody: {fileID: 8066914601509275265}

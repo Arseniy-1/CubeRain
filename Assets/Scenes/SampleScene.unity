@@ -1334,6 +1334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1321599993}
   - component: {fileID: 1321599994}
+  - component: {fileID: 1321599995}
   m_Layer: 0
   m_Name: BombSpawner
   m_TagString: Untagged
@@ -1368,9 +1369,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa4b3ee4ceeef544be54f5e6bf0173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool:
+  Pool:
     _poolCapacity: 3
     _objectPrefab: {fileID: 8116313390540617860, guid: 3ce5e5a4531091044a76f1f48edcff60, type: 3}
+  _cubeSpawner: {fileID: 2130484916}
+--- !u!114 &1321599995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321599991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd1dd9451f1f234ebbaf28513f7244d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 1321599994}
   _activeObjectCountView: {fileID: 2114608679}
   _objectCountView: {fileID: 227248639}
 --- !u!1 &1404429319
@@ -2038,6 +2053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2130484915}
   - component: {fileID: 2130484916}
+  - component: {fileID: 2130484917}
   m_Layer: 0
   m_Name: CubeSpawner
   m_TagString: Untagged
@@ -2072,16 +2088,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79c3e519906bc747821eb1baa569987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pool:
+  Pool:
     _poolCapacity: 3
     _objectPrefab: {fileID: 6479937147655419351, guid: b6c342db558deec409e200ec567f4f1f, type: 3}
-  _activeObjectCountView: {fileID: 1565716012}
-  _objectCountView: {fileID: 1789048438}
   _spawnPositions:
   - {x: 6, y: 6, z: 0}
   - {x: 0, y: 6, z: 0}
   - {x: -6, y: 6, z: 0}
   _spawnDelay: 1
+--- !u!114 &2130484917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130484912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea1a625c4702eb4f948838f330386e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 2130484916}
+  _activeObjectCountView: {fileID: 1565716012}
+  _objectCountView: {fileID: 1789048438}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
