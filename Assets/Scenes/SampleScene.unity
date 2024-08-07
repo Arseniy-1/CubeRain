@@ -1333,8 +1333,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1321599993}
-  - component: {fileID: 1321599994}
   - component: {fileID: 1321599995}
+  - component: {fileID: 1321599994}
   m_Layer: 0
   m_Name: BombSpawner
   m_TagString: Untagged
@@ -1366,13 +1366,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1321599991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa4b3ee4ceeef544be54f5e6bf0173e, type: 3}
+  m_Script: {fileID: 11500000, guid: ddd1dd9451f1f234ebbaf28513f7244d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool:
-    _poolCapacity: 3
-    _objectPrefab: {fileID: 8116313390540617860, guid: 3ce5e5a4531091044a76f1f48edcff60, type: 3}
-  _cubeSpawner: {fileID: 2130484916}
+  _spawner: {fileID: 1321599995}
+  _activeObjectCountView: {fileID: 2114608679}
+  _objectCountView: {fileID: 227248639}
 --- !u!114 &1321599995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1382,12 +1381,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1321599991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddd1dd9451f1f234ebbaf28513f7244d, type: 3}
+  m_Script: {fileID: 11500000, guid: afa4b3ee4ceeef544be54f5e6bf0173e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 1321599994}
-  _activeObjectCountView: {fileID: 2114608679}
-  _objectCountView: {fileID: 227248639}
+  Pool:
+    _poolCapacity: 3
+    _objectPrefab: {fileID: 8116313390540617860, guid: 3ce5e5a4531091044a76f1f48edcff60, type: 3}
+  _text: Bomb
+  _cubeSpawner: {fileID: 2130484916}
 --- !u!1 &1404429319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2092,7 @@ MonoBehaviour:
   Pool:
     _poolCapacity: 3
     _objectPrefab: {fileID: 6479937147655419351, guid: b6c342db558deec409e200ec567f4f1f, type: 3}
+  _text: Cube
   _spawnPositions:
   - {x: 6, y: 6, z: 0}
   - {x: 0, y: 6, z: 0}
