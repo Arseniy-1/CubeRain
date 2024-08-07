@@ -27,7 +27,6 @@ public abstract class Spawner<T> : MonoBehaviour where T : CollectableObject
 
     private void ShowInfo()
     {
-        Debug.Log($"Show Info - {_text}");
         ActiveObjectCountChanged?.Invoke(Pool.ActiveObjectCount);
         ObjectCountChanged?.Invoke(Pool.ObjectCount);
     }

@@ -19,7 +19,7 @@ public class SpawnerInfoView<T> : MonoBehaviour where T : CollectableObject
         _spawner.ObjectCountChanged -= ShowObjectsCount;
     }
 
-    private  void ShowActiveObjectsCount(int count)
+    private void ShowActiveObjectsCount(int count)
     {
         _activeObjectCountView.text = count.ToString();
     } 
