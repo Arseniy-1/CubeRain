@@ -9,23 +9,17 @@ public class SpawnerInfoView<T> : MonoBehaviour where T : CollectableObject
 
     private void OnEnable()
     {
-        _spawner.ActiveObjectCountChanged += ShowActiveObjectsCount;
-        _spawner.ObjectCountChanged += ShowObjectsCount;
+        _spawner.AmountChanged += ShowStats;
     }
 
     private void OnDisable()
     {
-        _spawner.ActiveObjectCountChanged -= ShowActiveObjectsCount;
-        _spawner.ObjectCountChanged -= ShowObjectsCount;
+        _spawner.AmountChanged -= ShowStats;
     }
 
-    private void ShowActiveObjectsCount(int count)
+    private void ShowStats()
     {
-        _activeObjectCountView.text = count.ToString();
-    } 
-
-    private void ShowObjectsCount(int count)
-    {
-        _objectCountView.text = count.ToString();
+        _activeObjectCountView.text = _spawner.ActiveObjectCount.ToString();
+        _objectCountView.text = _spawner.ObjectCount.ToString();
     }
 }

@@ -4,30 +4,40 @@ using UnityEngine;
 public abstract class Spawner<T> : MonoBehaviour where T : CollectableObject
 {
     [SerializeField] protected ObjectPool<T> Pool;
-    [SerializeField] private string _text;
 
-    public event Action<int> ActiveObjectCountChanged;
-    public event Action<int> ObjectCountChanged;
+    public int ObjectCount { get; private set; }
+    public int ActiveObjectCount { get; private set; }
 
-    protected virtual void OnEnable()
+    public event Action AmountChanged;
+
+    private void OnEnable()
     {
-        Pool.ObjectCountChanged += ShowInfo;
+        Pool.ObjectCountChanged += ChangeAmount;
     }
 
-    protected virtual void OnDisable()
+    private void OnDisable()
     {
-        Pool.ObjectCountChanged -= ShowInfo;
+        Pool.ObjectCountChanged -= ChangeAmount;
     }
 
-    public void PlaceInPool(CollectableObject collectableObject)
+    public void Spawn(Vector3 position)
+    {
+        CollectableObject obj = Pool.Get();
+        obj.OnDestroyed += PlaceInPool;
+        obj.transform.position = position;
+        obj.Activate();
+    }
+
+    public virtual void PlaceInPool(CollectableObject collectableObject)
     {
         collectableObject.OnDestroyed -= PlaceInPool;
         Pool.Release((T)collectableObject);
     }
 
-    private void ShowInfo()
+    private void ChangeAmount()
     {
-        ActiveObjectCountChanged?.Invoke(Pool.ActiveObjectCount);
-        ObjectCountChanged?.Invoke(Pool.ObjectCount);
+        ObjectCount = Pool.ObjectCount;
+        ActiveObjectCount = Pool.ActiveObjectCount;
+        AmountChanged?.Invoke();
     }
 }

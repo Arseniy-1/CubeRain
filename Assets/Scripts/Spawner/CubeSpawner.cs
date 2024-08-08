@@ -8,14 +8,19 @@ public class CubeSpawner : Spawner<Cube>
 {
     [SerializeField] private List<Vector3> _spawnPositions;
     [SerializeField] private float _spawnDelay = 1.0f;
+    [SerializeField] private BombSpawner _bombSpawner;
 
     private bool _isEnable = true;
-
-    public event Action<Cube> OnSpawned;
 
     private void Start()
     {
         StartCoroutine(SpawningCubes());
+    }
+
+    public override void PlaceInPool(CollectableObject collectableObject)
+    {
+        base.PlaceInPool(collectableObject);
+        _bombSpawner.Spawn(collectableObject.transform.position);
     }
 
     private IEnumerator SpawningCubes()
@@ -25,20 +30,9 @@ public class CubeSpawner : Spawner<Cube>
         while (_isEnable)
         {
             yield return delay;
-            Cube obj = Spawn(GetRandomPostion());
 
-            OnSpawned?.Invoke(obj);
+            Spawn(GetRandomPostion());
         }
-    }
-
-    public Cube Spawn(Vector3 position)
-    {
-        Cube obj = Pool.Get();
-        obj.OnDestroyed += PlaceInPool;
-        obj.transform.position = position;
-        obj.Activate();
-
-        return obj;
     }
 
     private Vector3 GetRandomPostion()

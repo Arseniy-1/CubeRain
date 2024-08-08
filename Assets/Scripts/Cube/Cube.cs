@@ -13,8 +13,6 @@ public class Cube : CollectableObject
     private int _maxDelay = 5;
     private int _minDelay = 2;
 
-    public event Action<Cube> OnDisabled;
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out Platform platform))
@@ -41,6 +39,5 @@ public class Cube : CollectableObject
         yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
         
         Return();
-        OnDisabled.Invoke(this);
     }
 }

@@ -1387,7 +1387,6 @@ MonoBehaviour:
   Pool:
     _poolCapacity: 3
     _objectPrefab: {fileID: 8116313390540617860, guid: 3ce5e5a4531091044a76f1f48edcff60, type: 3}
-  _text: Bomb
   _cubeSpawner: {fileID: 2130484916}
 --- !u!1 &1404429319
 GameObject:
@@ -2092,12 +2091,12 @@ MonoBehaviour:
   Pool:
     _poolCapacity: 3
     _objectPrefab: {fileID: 6479937147655419351, guid: b6c342db558deec409e200ec567f4f1f, type: 3}
-  _text: Cube
   _spawnPositions:
   - {x: 6, y: 6, z: 0}
   - {x: 0, y: 6, z: 0}
   - {x: -6, y: 6, z: 0}
   _spawnDelay: 1
+  _bombSpawner: {fileID: 1321599995}
 --- !u!114 &2130484917
 MonoBehaviour:
   m_ObjectHideFlags: 0
